@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -7,8 +8,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
     Tabs,
     TabsContent,
@@ -20,33 +19,14 @@ import { BicepsFlexed, Camera, Computer } from "lucide-react"
 export default function MyActivity() {
     return (
         <Tabs defaultValue="coding" className="w-[350px]">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-3 bg-lime-900">
                 <TabsTrigger value="coding"><Computer />Coding</TabsTrigger>
                 <TabsTrigger value="photograph"><Camera />Photograph</TabsTrigger>
                 <TabsTrigger value="workout"><BicepsFlexed />Workout</TabsTrigger>
-
             </TabsList>
             <TabsContent value="coding">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Coding</CardTitle>
-                        <CardDescription>
-                            Make changes to your account here. Click save when youre done.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        <div className="space-y-1">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" defaultValue="Pedro Duarte" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="username">Username</Label>
-                            <Input id="username" defaultValue="@peduarte" />
-                        </div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button>Save changes</Button>
-                    </CardFooter>
+                <Card className="overflow-hidden">
+                    <ScrollAreaHorizontalDemo />
                 </Card>
             </TabsContent>
             <TabsContent value="photograph">
@@ -58,14 +38,7 @@ export default function MyActivity() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        <div className="space-y-1">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" defaultValue="Pedro Duarte" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="username">Username</Label>
-                            <Input id="username" defaultValue="@peduarte" />
-                        </div>
+
                     </CardContent>
                     <CardFooter>
                         <Button>Save changes</Button>
@@ -81,14 +54,7 @@ export default function MyActivity() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        <div className="space-y-1">
-                            <Label htmlFor="current">Current password</Label>
-                            <Input id="current" type="password" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="new">New password</Label>
-                            <Input id="new" type="password" />
-                        </div>
+
                     </CardContent>
                     <CardFooter>
                         <Button>Save password</Button>
@@ -98,3 +64,63 @@ export default function MyActivity() {
         </Tabs>
     )
 }
+
+
+
+import Image from "next/image"
+
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+
+export interface Artwork {
+    artist: string
+    art: string
+}
+
+export const works: Artwork[] = [
+    {
+        artist: "Learning TypeScript",
+        art: "/my-activity/Programming1.jpg",
+    },
+    {
+        artist: "Enjoying Coding",
+        art: "/my-activity/Programming2.jpg",
+
+    },
+    {
+        artist: "Working on Project",
+        art: "/my-activity/Programming3.jpg",
+
+
+
+    },
+]
+
+export function ScrollAreaHorizontalDemo() {
+    return (
+        <ScrollArea className="w-96 whitespace-nowrap rounded-md overflow-hidden">
+            <div className="flex w-max space-x-4 p-4">
+                {works.map((artwork) => (
+                    <figure key={artwork.artist} className="shrink-0">
+                        <div className="overflow-hidden rounded-md">
+                            <Image
+                                src={artwork.art}
+                                alt={`Photo by ${artwork.artist}`}
+                                className="aspect-square object-cover"
+                                width={250}
+                                height={250}
+                            />
+                        </div>
+                        <figcaption className="pt-2 text-xs text-muted-foreground">
+                            Photo of{" "}
+                            <span className="font-semibold text-foreground">
+                                {artwork.artist}
+                            </span>
+                        </figcaption>
+                    </figure>
+                ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+        </ScrollArea>
+    )
+}
+

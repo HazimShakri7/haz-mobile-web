@@ -1,6 +1,7 @@
 import BottomNavigation from "@/components/shared/bottombar/BottomNavigation";
 import AvatarProfile from "@/components/shared/home/AvatarProfile";
 import CalendarCard from "@/components/shared/home/CalendarCard";
+import ExploreMore from "@/components/shared/home/ExploreMore";
 import MyActivity from "@/components/shared/home/MyActivity";
 
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
                 <CalendarCard />
                 <p className="font-semibold text-lg text-white">My Activity</p>
                 <MyActivity />
+                <p className="font-semibold text-lg text-white">Explore More</p>
+                <ExploreMore />
             </main>
             <footer className="border-t p-4">
                 <BottomNavigation />

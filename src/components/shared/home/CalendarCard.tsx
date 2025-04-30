@@ -24,8 +24,8 @@ export default function CalendarCard() {
     const [showFullMonth, setShowFullMonth] = React.useState(false);
 
     const getSession = (hour: number) => {
-        if (hour >= 5 && hour < 12) return "morning";
-        if (hour >= 12 && hour < 18) return "evening";
+        if (hour >= 6 && hour < 12) return "morning";
+        if (hour >= 12 && hour < 19) return "evening";
         return "night";
     };
 
@@ -138,13 +138,13 @@ export default function CalendarCard() {
                         return (
                             <div
                                 key={index}
-                                className={`flex flex-col items-center justify-center w-16 h-20 rounded-full border-black border transition-all duration-300 ${isToday ? "bg-lime-500 text-black" : "bg-white text-black"
+                                className={`flex flex-col items-center justify-center w-16 h-20 rounded-lg border-white/70 border transition-all duration-300 ${isToday ? "bg-white/90 text-black" : "bg-lime-900 text-white"
                                     }`}
                             >
                                 <span className="font-semibold">
                                     {days[date.getDay()]}
                                 </span>
-                                <span className="flex items-center justify-center text-lg rounded-full w-8 h-8 bg-lime-300">{date.getDate()}</span>
+                                <span className="flex items-center justify-center text-lg rounded-full w-8 h-8 border border-white">{date.getDate()}</span>
                             </div>
                         );
                     })}
