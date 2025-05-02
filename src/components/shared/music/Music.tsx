@@ -188,7 +188,7 @@ export default function Music() {
 
             {/* ReactPlayer terapung */}
             {playing && (
-                <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-xs bg-white text-black rounded-lg shadow-lg p-3 z-50">
+                <div className="absolute left-1/2 -translate-x-1/2 w-[100%] max-w-xs bg-white text-black rounded-lg shadow-lg p-3 z-50">
                     <div className="flex justify-between items-center mb-2">
                         <p className="text-sm font-semibold">Sedang dimainkan</p>
                         <Button
