@@ -23,7 +23,7 @@ export default function ProfileCard() {
                             Hazim Shakri
                         </CardTitle>
                         <CardDescription>
-                            A System Developer
+                            System Developer
                         </CardDescription>
                         <CardDescription className="flex flex-row gap-2">
                             <Calendar className="h-5 w-5" /> 14 July 2001 , 1:29 AM
