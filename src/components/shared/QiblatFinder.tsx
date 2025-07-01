@@ -5,12 +5,12 @@ import { Card, CardContent, CardDescription } from "../ui/card"
 import Image from "next/image"
 
 export default function QiblatFinder() {
-    const [angleToQibla, setAngleToQibla] = useState<number | null>(null)
+    const [angleToQiblat, setAngleToQiblat] = useState<number | null>(null)
     const [compassHeading, setCompassHeading] = useState<number>(0)
     const [error, setError] = useState<string | null>(null)
 
-    const KAABAH_LAT = 21.4225
-    const KAABAH_LON = 39.8262
+    const KAABAH_LATITUDE = 21.4225
+    const KAABAH_LONGITUDE = 39.8262
 
     useEffect(() => {
         if (!navigator.geolocation) {
@@ -21,8 +21,8 @@ export default function QiblatFinder() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { latitude, longitude } = position.coords
-                const qiblaAngle = calculateQiblaDirection(latitude, longitude)
-                setAngleToQibla(qiblaAngle)
+                const qiblatAngle = calculateQiblaDirection(latitude, longitude)
+                setAngleToQiblat(qiblatAngle)
             },
             () => {
                 setError("Permission denied or location unavailable.")
@@ -48,27 +48,27 @@ export default function QiblatFinder() {
     }, [])
 
     function calculateQiblaDirection(lat: number, lon: number) {
-        const phiK = (KAABAH_LAT * Math.PI) / 180
-        const lambdaK = (KAABAH_LON * Math.PI) / 180
+        const phiK = (KAABAH_LATITUDE * Math.PI) / 180
+        const lambdaK = (KAABAH_LONGITUDE * Math.PI) / 180
         const phi = (lat * Math.PI) / 180
         const lambda = (lon * Math.PI) / 180
 
-        const qibla = Math.atan2(
+        const qiblat = Math.atan2(
             Math.sin(lambdaK - lambda),
             Math.cos(phi) * Math.tan(phiK) - Math.sin(phi) * Math.cos(lambdaK - lambda)
         )
 
-        let qiblaDeg = (qibla * 180) / Math.PI
-        qiblaDeg = (qiblaDeg + 360) % 360
-        return qiblaDeg
+        let qiblatDegree = (qiblat * 180) / Math.PI
+        qiblatDegree = (qiblatDegree + 360) % 360
+        return qiblatDegree
     }
 
-    const rotation = angleToQibla !== null
-        ? (angleToQibla - compassHeading + 360) % 360
+    const rotation = angleToQiblat !== null
+        ? (angleToQiblat - compassHeading + 360) % 360
         : 0
 
     return (
-        <Card className="rounded-xs text-center">
+        <Card className="shadow-none rounded-xs text-center">
             <CardContent className="flex flex-col items-center justify-center gap-4">
                 <CardDescription>
                     {error && <p className="text-red-500">{error}</p>}
@@ -114,8 +114,8 @@ export default function QiblatFinder() {
                                 {/* Optional: boleh tambah jarum panah juga kalau nak */}
                             </div>
 
-                            <div>
-                                Qiblat is <span className="font-bold">{angleToQibla?.toFixed(2)}°</span> from North
+                            <div className="mt-4">
+                                Qiblat is <span className="font-bold">{angleToQiblat?.toFixed(2)}°</span> from North
                             </div>
                         </>
                     )}

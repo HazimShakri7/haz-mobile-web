@@ -1,3 +1,4 @@
+import PrayerTime from "@/components/shared/PrayerTime";
 import QiblatFinder from "@/components/shared/QiblatFinder";
 
 export default function TimePage() {
@@ -5,6 +6,8 @@ export default function TimePage() {
         <div className="mx-4 mt-4 font-semibold flex flex-col gap-2">
             Qiblat Finder
             <QiblatFinder />
+            Prayer Time
+            <PrayerTime />
         </div>
     );
 }
