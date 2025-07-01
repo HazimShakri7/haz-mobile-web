@@ -82,7 +82,7 @@ export function SocialMedia() {
 
 export function About() {
     return (
-        <Card className="rounded-none shadow-none border-none">
+        <Card className="rounded-none shadow-none border-none p-4">
             <CardContent className="flex flex-row justify-center items-center">
                 <CardContent className="flex flex-col justify-center items-center">
                     <CardTitle>1.4 Y</CardTitle>
